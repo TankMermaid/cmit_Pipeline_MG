@@ -1,8 +1,8 @@
 # CMIT Metagenomic Pipeline Common Use Standards
 
 ## Launch an instance of the Pipeline
-* Launch the instance from AMI `almlab_cluster_09162016 (ami-fcbbcdeb)`. This will provide the envirment for the pipeline. Remember to leve port 8888 open.
-* Create a volume from Snapshot `snap-8332db98`. The volume will contains the tools that required for the pipeline to run. Mount this volume to the folder `/home/ubuntu/tools`.
+* Launch the instance from AMI `almlab_cluster_09162016 (ami-fcbbcdeb)`. This will provide the environment for the pipeline. Remember to leave port 8888 open.
+* Create a volume from Snapshot `snap-8332db98`. The volume will contain the tools that required for the pipeline to run. Mount this volume to the folder `/home/ubuntu/tools`.
 
 ## Specify the absolute path to your data
 The pipeline also requires the path to certain data in order to perform certain task. You should specify the path to the data in file `luigi.cfg`
@@ -45,7 +45,7 @@ The results will be in the folder: `TrimTrimmomatic` ,`DereplicateFastuniq` and 
 ```{bash}
 python Pipeline_MG.py  TaxonProfileKrakenList --samplelistfile sample.list --workers 2 1>TaxonProfileKrakenList.log 2>TaxonProfileKrakenList.err 
 ```
-This step will automaically run task `TrimTrimmomatic` ,`DereplicateFastuniq` and `ContaimRemoveBwa` if you have not done so. 
+This step will automatically run task `TrimTrimmomatic` ,`DereplicateFastuniq` and `ContaimRemoveBwa` if you have not done so. 
 
 ### Run funcational annotation
 ```{bash}
@@ -64,4 +64,4 @@ This will take a long time.
 ## Tips:
 1. The pipeline is based on the spotify workflow [luigi](https://github.com/spotify/luigi). You can modify the pipeline to your desire based on the [document](http://luigi.readthedocs.io/en/stable/workflows.html).
 2. Choose the number of workers based on the number of cores in your instance. Most tasks in the pipeline use 16 cores. So if your instance has 48 cores, your worker should be `48/16=3`.
-3. You can check your task status and get better understanding of dependence of individual tasks from browser by entering `http://youripaddress:8888`.
+3. You can check your task status and get better understanding of dependence of individual task from browser by entering `http://youripaddress:8888`.
