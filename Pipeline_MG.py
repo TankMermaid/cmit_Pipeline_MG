@@ -433,10 +433,10 @@ class TaxonProfileKrakenList(luigi.Task):
         with self.output().open('w') as outfile:
             outfile.write('workflow finished at {t}'.format(t=timestamp))
 
-class ContaimRemoveBmtaggerList(luigi.Task):
+class ContaimRemoveBwaList(luigi.Task):
     samplelistfile = luigi.Parameter()
     def requires(self):
-        return [ContaimRemoveBmtagger(sample=i) for i in [line.strip() for line in open(self.samplelistfile,"r")]]
+        return [ContaimRemoveBwa(sample=i) for i in [line.strip() for line in open(self.samplelistfile,"r")]]
 
 
     def output(self):
