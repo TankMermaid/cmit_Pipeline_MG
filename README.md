@@ -23,7 +23,7 @@ If you need to run Kraken, specify the path to your database by run command `exp
 
 ## Prepare your data for the pipeline
 1. Create a folder as your working folder (Specified by `basefolder` in your `luigi.cfg` file )
-2. Put the raw metagenomic fastq file in folder `Raw` inside your working folder
+2. Put the raw metagenomic fastq file in folder `raw` inside your working folder
 3. Keep your raw fastq files in the format `samplename_1.fastq` and  `samplename_2.fastq` (paired end).
 4. Create a file `sample.list` containg the names of all samples, each sample in one line without any spaces.
 5. Run command line `luigid --background --port 8888`.
