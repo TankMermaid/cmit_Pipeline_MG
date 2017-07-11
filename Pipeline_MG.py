@@ -26,6 +26,7 @@ def run_cmd(cmd):
 #############################################################################################################################
 class TrimTrimmomatic(luigi.Task):
     sample = luigi.Parameter()
+    Parameter=luigi.Parameter(default="LEADING:20 TRAILING:20 MINLEN:50")
     n_cpu = luigi.Parameter(default="16")
 
     def output(self):
@@ -37,7 +38,7 @@ class TrimTrimmomatic(luigi.Task):
 
     def run(self):
         folder=GlobalParameter().basefolder+"/"+self.__class__.__name__+"/"
-        cmd = "[ -d  {folder} ] || mkdir {folder};trimmomatic PE -threads {n_cpu}  {inputfolder}{sample}_1.fastq {inputfolder}{sample}_2.fastq {folder}{sample}_P_1.fastq {folder}{sample}_U_1.fastq {folder}{sample}_P_2.fastq {folder}{sample}_U_2.fastq LEADING:20 TRAILING:20 MINLEN:50".format(sample=self.sample,folder=folder,n_cpu=self.n_cpu,inputfolder=os.path.abspath(GlobalParameter().basefolder)+"/raw/")
+        cmd = "[ -d  {folder} ] || mkdir {folder};trimmomatic PE -threads {n_cpu}  {inputfolder}{sample}_1.fastq {inputfolder}{sample}_2.fastq {folder}{sample}_P_1.fastq {folder}{sample}_U_1.fastq {folder}{sample}_P_2.fastq {folder}{sample}_U_2.fastq {Parameter} ".format(sample=self.sample,folder=folder,n_cpu=self.n_cpu,inputfolder=os.path.abspath(GlobalParameter().basefolder)+"/raw/",Parameter=self.Parameter)
         print("****** NOW RUNNING COMMAND ******: " + cmd)
         print run_cmd(cmd)
 
